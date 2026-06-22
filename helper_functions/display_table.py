@@ -15,7 +15,6 @@ def create_table(sql_cursor:sqlite3.Cursor,sql_connector:sqlite3.Connection):
     for status in fetch_statuses:
         job_statuses.append(status[0])
     for header in headers:
-        print(header)
         job_table.add_column(header)
     for result in sql_results:
         job_status=result[3]
