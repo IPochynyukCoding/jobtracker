@@ -1,6 +1,6 @@
 import sqlite3
 import datetime
-from display_table import fetch_items
+from helper_functions.display_table import fetch_items
 
 def input_table_validation(query_results:list[tuple],input_message:str):
     valid_selection=False
