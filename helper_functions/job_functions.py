@@ -21,7 +21,7 @@ def input_date_validation(format:str,input_message:str,example:str):
         date=input(input_message)
         try:
             date_conversion=datetime.datetime.strptime(date,format)
-            return date_conversion
+            return date_conversion.strftime(format)
         except ValueError:
             print(f"Invalid time format {date}, it must match {format}")
 
@@ -83,7 +83,7 @@ def modify_job(db_cursor:sqlite3.Cursor,db_connection:sqlite3.Connection):
         date=input_date_validation("%Y-%m-%d","What is the interview date (format must be YYYY-MM-DD): ","YYYY means year (i.e., 2026), MM means month (i.e.,03), and DD means day (i.e., 03), so 2026-03-03 will be March 3rd, 2026")
         time=input_date_validation("%H:%M","What is the interview time (format must be in 24-hour format): ","For 24-hour format, 2:00PM would be 14:00, 9:00AM would be 09:00, and 12:00AM would be 00:00")
         interview_time=datetime.datetime.strptime(f"{date} {time}","%Y-%m-%d %H:%M")
-        db_cursor.execute("update job set interview_date=? where job_id=?",[interview_time])
+        db_cursor.execute("update job set interview_date=? where job_id=?",[interview_time,selected_job])
         db_connection.commit()
     current_date=datetime.datetime.strptime((datetime.datetime.now().astimezone().strftime("%Y-%m-%d")),"%Y-%m-%d")
     db_cursor.execute("update job set job_status=?,last_updated_date=? where job_id=?",[selected_status,current_date,selected_job])

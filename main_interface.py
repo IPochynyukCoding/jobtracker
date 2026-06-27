@@ -36,5 +36,5 @@ if __name__ == "__main__":
                 print("Unable to successfully clear")
                 quit()
         except(ValueError,IndexError):
-            print("Invalid selection, please try again!")
+            print("Invalid function selection, please try again!")
 
