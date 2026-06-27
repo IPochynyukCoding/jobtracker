@@ -66,6 +66,7 @@ def add_job(db_cursor:sqlite3.Cursor,db_connection:sqlite3.Connection):
     query_parameters=[job_title,1,employer_id,job_site_id,current_url]
     db_cursor.execute("insert into job(job_title,job_status,employer_id,site_id,job_listing_url) values(?,?,?,?,?)",query_parameters)
     db_connection.commit()
+    input("Successfully added job, press any key to go back to main interface ")
 
 
 def modify_job(db_cursor:sqlite3.Cursor,db_connection:sqlite3.Connection):
@@ -87,6 +88,7 @@ def modify_job(db_cursor:sqlite3.Cursor,db_connection:sqlite3.Connection):
     current_date=datetime.datetime.strptime((datetime.datetime.now().astimezone().strftime("%Y-%m-%d")),"%Y-%m-%d")
     db_cursor.execute("update job set job_status=?,last_updated_date=? where job_id=?",[selected_status,current_date,selected_job])
     db_connection.commit()
+    input("Successfully modified job, press any key to go back to main interface ")
 
     
             
